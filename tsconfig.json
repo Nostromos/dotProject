@@ -18,6 +18,7 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "module": "NodeNext",
+    "rootDir": "src",
     "outDir": "dist",
     "sourceMap": true,
     "declaration": true,
@@ -26,5 +27,8 @@
     "lib": [
       "es2022"
     ]
+  },
+  "ts-node": {
+    "esm": true
   }
 }
