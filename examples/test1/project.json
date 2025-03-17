@@ -1,0 +1,67 @@
+{
+  "title": "Personal Site (what.lol)",
+  "slug": "what.lol",
+  "description": "My personal site for publishing my writing and showing off projects and their documentation.",
+  "tags": [
+    "Docusaurus",
+    "Static",
+    "React",
+    "Portfolio"
+  ],
+  "technologies": {
+    "frontend": [
+      "React",
+      "Docusaurus"
+    ],
+    "backend": [
+      "Node"
+    ],
+    "tools": [
+      "Github Pages"
+    ],
+    "frameworks": [
+      "React",
+      "Docusaurus"
+    ],
+    "libraries": [
+      "clsx",
+      "react-dom"
+    ]
+  },
+  "status": "In Progress",
+  "urls": {
+    "repository": "https://github.com/nostromos/personal-site-2025",
+    "demo": "https://what.lol",
+    "production": "https://what.lol"
+  },
+  "screenshots": "./screenshots",
+  "features": [
+    "Writing and publishing my own blog posts",
+    "Building and deploying personal projects",
+    "Dark mode support"
+  ],
+  "contributors": {
+    "mike": {
+      "name": "Michael Monaghan",
+      "role": "Author"
+    }
+  },
+  "date_started": "02/08/2024",
+  "date_completed": "",
+  "challenges": [
+    "Docusaurus abstracts a lot of customization options away from you so when you'd like to do something more involved or dynamic, it can be tricky"
+  ],
+  "solutions": [
+    "Lots of custom react components and styling"
+  ],
+  "testimonials": [
+    {
+      "name": "Tif",
+      "title": "Wife",
+      "feedback": "yea pretty cool"
+    }
+  ],
+  "related_projects": [
+    "https://github.com/nostromos/personal-site"
+  ]
+}
