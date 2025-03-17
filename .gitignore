@@ -75,3 +75,6 @@ public/
 
 # TernJS port file
 .tern-port
+
+# Example files as part of dev
+examples/

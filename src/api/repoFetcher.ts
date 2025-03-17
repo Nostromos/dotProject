@@ -1,6 +1,6 @@
 import ok from './githubClient.js';
 
-async function getAllRepos() {
+export async function getAllRepos() {
   const allPublicRepos = await ok.request('GET /users/Nostromos/repos', {
     username: 'Nostromos',
     headers: {
@@ -12,7 +12,5 @@ async function getAllRepos() {
     per_page: 5, // default 30
   });
 
-  console.log(typeof allPublicRepos);
+  return allPublicRepos.data;
 };
-
-getAllRepos();
