@@ -1,4 +1,4 @@
-type Project = {
+export type Project = {
   title: string;
   slug: string;
   description: string;
@@ -37,3 +37,25 @@ type Project = {
   }[];
   related_projects: string[];
 };
+
+export type Command = {
+  description: string;
+  usage: string;
+  options?: Record<string, string>; // maps options like '--verbose' to descriptions
+};
+
+export type CommandsMap = Record<string, Command>;
+
+export type CLIOptions = {
+  verbose: boolean;
+  force: boolean;
+};
+
+export type CLICommand = "generate" | "help" | string; // can add for future commands
+
+export type CLIArgs = {
+  command: CLICommand;
+  params: string[]; // stuff like filepaths
+  options: CLIOptions;
+};
+
