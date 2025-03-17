@@ -9,6 +9,8 @@
 
 Core Logic (TS + Node)
 - [ ] GitHub API Integration – Fetch repository details using GitHub’s REST or GraphQL API.
+  - [x] Dev: Get basic GH auth set up - token
+  - [ ] MVP: Create GH app, use app auth, and change endpoint to `only auth'd user`
 - [ ] Customizable Data Extraction – Allow users to define what data goes into INFO.json (e.g., repo name, description, language, stars, forks, contributors).
 - [ ] Screenshot Discovery or Generation - Find screenshots present in repo and allow users to save copies to their `.project` folder
   - [ ] MVP: Find images in the repo and save them all, then let user pick which ones to keep
@@ -51,3 +53,5 @@ Basic Web App
 - [ ] Download/Export Options – Allow users to download generated INFO.json or push it to a repo.
 - [ ] Webhooks for Auto-Update – Automatically update INFO.json when repo data changes.
 - [ ] Multi-User Support – Allow multiple users to manage their own projects.
+
+See issues for working list & plan.
