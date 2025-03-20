@@ -45,7 +45,7 @@ Then there are secondary rate limits:
 >
 > You may encounter a secondary rate limit if you:
 >
-> - ake too many concurrent requests. No more than 100 concurrent requests are allowed. This limit is shared across the REST API and GraphQL API.
+> - Make too many concurrent requests. No more than 100 concurrent requests are allowed. This limit is shared across the REST API and GraphQL API.
 > - Make too many requests to a single endpoint per minute. No more than 900 points per minute are allowed for REST API endpoints, and no more than 2,000 points per minute are allowed for the GraphQL API endpoint. For more information about points, see Calculating points for the secondary rate limit.
 > - Make too many requests per minute. No more than 90 seconds of CPU time per 60 seconds of real time is allowed. No more than 60 seconds of this CPU time may be for the GraphQL API. You can roughly estimate the CPU time by measuring the total response time for your API requests.
 > - Make too many requests that consume excessive compute resources in a short period of time.
@@ -97,4 +97,4 @@ Github API responses contain a `content-length` header that (I assume) tells me 
 
 *Will you log success/failure per batch?*
 
-Yes. I will log all of it.
+Yes. I will log all of it. How? Not sure yet. 
