@@ -1,28 +1,37 @@
-import { Octokit, App } from "octokit";
+import { Octokit } from "octokit";
+import { createTokenAuth } from "@octokit/auth-token";
 import dotenv from 'dotenv';
-import type { RequestParameters } from "@octokit/types";
 
 dotenv.config();
+console.log("🔑 Loaded token");
+const token = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
 
-const ok = new Octokit({ auth: process.env.GITHUB_API_AUTH_TOKEN });
+if (!token) throw new Error("❌ GITHUB_PERSONAL_ACCESS_TOKEN not loaded into env");
 
-// The below function is for later...
-async function request(type: any, endpoint: any, options: RequestParameters | undefined) {
-  // TODO: Add rate limiting here - ie. if request is rate limited, wait for reset time
-  const reqString = `${type} ${endpoint}`;
-  
+const auth = createTokenAuth(token);
+const GITHUB_AUTH_TOKEN = await auth();
+
+const OCTOKIT_CONFIG = {
+  userAgent: "dotp/v0.0.4",
+  auth: GITHUB_AUTH_TOKEN.token,
+  // default auth strategy is token - this will change in future
+};
+
+const octokit = new Octokit(OCTOKIT_CONFIG);
+
+async function checkAuth() {
   try {
-    const response = await ok.request(reqString, options)
-
-    if (response.status !== 200) {
-      throw new Error;
+    const { data } = await octokit.rest.users.getAuthenticated();
+    console.log(`✅ Authenticated as ${data.login}`);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("❌ Authentication failed:", error.message);
+    } else {
+      console.error("❌ Authentication failed:", error);
     }
-
-    return response.data;
-  } catch (err) {
-    console.log(err);
-    return err;
   }
 }
 
-export default ok;
+checkAuth();
+
+export default octokit;
