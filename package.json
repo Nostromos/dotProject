@@ -1,11 +1,16 @@
 {
   "type": "module",
   "devDependencies": {
+    "@octokit/types": "^13.8.0",
     "@types/node": "^22.13.8",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
   },
   "dependencies": {
+    "@octokit/auth-token": "^5.1.2",
+    "@octokit/core": "^6.1.4",
+    "@octokit/openapi-types": "^24.0.0",
+    "@octokit/plugin-rest-endpoint-methods": "^13.3.1",
     "dotenv": "^16.4.7",
     "octokit": "^4.1.2"
   },
