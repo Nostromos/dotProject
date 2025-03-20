@@ -17,7 +17,7 @@ Core Logic (TS + Node)
   - [ ] May mean offering some basic image processing (changing dimensions, etc.)
   - [ ] FUTURE: Maybe some way of visiting the project site and taking screenshots of each page, or looking in the components section of a react site and generating images of those components on the page
 - [ ] Local JSON Generation – Generate and save INFO.json for each repository.
-- [ ] Batch Processing – Support generating INFO.json for multiple repositories at once.
+- [ ] [Batch Processing – Support generating INFO.json for multiple repositories at once.](./Batch_Processing.md)
 - [ ] Rate Limit Handling – Implement caching or backoff strategies for GitHub API limits.
 - [ ] Authentication Support – Allow the use of GitHub tokens for private repo access.
 - [ ] Config File Support – Let users define options (e.g., fields to include, output directory) via a config file (config.json).
