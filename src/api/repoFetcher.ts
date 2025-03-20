@@ -1,16 +1,30 @@
-import ok from './githubClient.js';
+import type { RestEndpointMethodTypes } from "@octokit/plugin-rest-endpoint-methods";
+import octokit from './githubClient.js';
 
-export async function getAllRepos() {
-  const allPublicRepos = await ok.request('GET /users/Nostromos/repos', {
-    username: 'Nostromos',
-    headers: {
-      'X-GitHub-Api-Version': '2022-11-28'
-    },
-    type: 'owner', // defaults to `owner`
-    sort: 'updated', // defaults to `full_name`
-    direction: 'desc', // default `asc` when using `full_name`, otherwise `desc`
-    per_page: 5, // default 30
+export async function getAllRepos(): Promise<RestEndpointMethodTypes["repos"]["listForUser"]["response"]["data"]> {
+  const response = await octokit.rest.repos.listForUser({
+    username: 'Nostromos'
+  })
+
+  if (response.status !== 200) {
+    throw new Error("Github API Error:", response.status);
+  }
+
+  return response.data;
+}
+
+export async function getRepo(repo: string): Promise<RestEndpointMethodTypes["repos"]["get"]["response"]["data"]> {
+  const response = await octokit.rest.repos.get({
+    owner: 'Nostromos',
+    repo: repo,
   });
 
-  return allPublicRepos.data;
-};
+  if (response.status !== 200) {
+    throw new Error("Github API Error:", response.status);
+  }
+
+  return response.data;
+}
+
+let test = await getRepo("Jammming");
+console.log(test);
