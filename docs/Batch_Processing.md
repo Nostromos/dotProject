@@ -5,16 +5,18 @@ Handling multiple tasks at once instead of one at a time.
 *Why is this important?* 
 Rate limiting on GH can impact ability to get all the repos needed at once. I can get some of them and process those while I'm waiting for the rate limit to reset. 
 
+## Initial Thoughts
+
 Some questions:
 
-## Do I really need to do batch processing right now?
+### Do I really need to do batch processing right now?
 Probably not tbh. The CLI app will run on user's computer and presumably will use their own API key. Rate limiting will handle issues with that. 
 
 The web app might need it, but there'll be a different auth mechanism, with higher rates. I think I need to do some testing to see how it handles larger numbers of repos, like 1000 at once. The issue with 1000 repos is that there's no way you'd want to use that many in your portfolio, or at least I imagine the average user would not. 
 
 **However,** it would be cool to show that I *can* handle multiple API calls, batch processing, and rate limiting.
 
-## What needs to be batched?
+### What needs to be batched?
 
 Well I need to get all public repositories, then make at least 3 API calls **per** repo to get things like health metrics, language data, and (in the future) to analyze files like `project.json`, `go.mod`, etc. for library/framework information. 
 
@@ -28,7 +30,7 @@ Is it a batch of user repos? A batch of API calls for each repo? How deep should
 - API calls needed to complete a user's request for either all their repos or the ones they select
 - Processing each of those repos to ensure I have an enriched set of data useful to the user.
 
-## Batch Size & Strategy
+### Batch Size & Strategy
 
 Some interesting questions:
 
@@ -61,7 +63,7 @@ I doubt that I'll hit 5k rph (requests per hour) but I'll probably check for pag
 
 Great question. I doubt it. I think if system performance or backlog becomes an issue, I'll need to rewrite more than just batch processing.
 
-## Parallel or Sequential Execution
+### Parallel or Sequential Execution
 
 *Can these batches run concurrently (e.g., using worker threads, async tasks)?*
 
@@ -77,7 +79,7 @@ For now, I think it's safe to lose everything and the user will have to start ov
 
 Which brings us to our next concern...
 
-## Error Handling & Retry Strategy
+### Error Handling & Retry Strategy
 
 *What happens if one batch fails?*
 
@@ -89,7 +91,7 @@ Simplest: Retry that batch again if the error is network-related and if it doesn
 
 Retry again immediately.
 
-## Logging & Monitoring
+### Logging & Monitoring
 
 *How do you track progress?*
 
@@ -98,3 +100,25 @@ Github API responses contain a `content-length` header that (I assume) tells me 
 *Will you log success/failure per batch?*
 
 Yes. I will log all of it. How? Not sure yet. 
+
+## Live Thoughts
+
+Honestly, it would be simpler to keep this single-threaded but I think learning more about Node is really useful. 
+
+### Concurrency vs Parallelism
+
+*Concurrency is about dealing with lots of things at once. Parallelism is about doing lots of things at once. — Rob Pike*
+
+After a shallow dive, my understanding is that:
+- Concurrency comes into play when you notice that a single thread is spending time waiting and blocking other operations
+- Parallelism comes into play when you have CPU-intensive tasks that can happen in parallel across multiple threads. 
+
+Technically, you can use both concurrency and parallelism at the same time but since I'm already going beyond for this, I'll stick to parallelism. 
+
+For example...
+
+I have a single-core machine, a list of number, and two tasks- task 1 is `Add` and task 2 is `getNextNumberFromWeb`. They're called sequentially. Concurrency is when the machine sees that `getNextNumberFromWeb` is waiting on something and uses that 'time' to allow `Add` to execute, until such time that `getNextNumberFromWeb` has received its data and is ready to execute.
+
+Parallelism might be using a different, multi-core machine, and having both `Add` and `getNextNumberFromWeb` run on different threads, with neither blocking the other. 
+
+That's a bad example but I needed to write it out. 
