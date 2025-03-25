@@ -6,6 +6,8 @@ dotenv.config();
 console.log("🔑 Loaded token");
 const token = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
 
+console.log(token);
+
 if (!token) throw new Error("❌ GITHUB_PERSONAL_ACCESS_TOKEN not loaded into env");
 
 const auth = createTokenAuth(token);

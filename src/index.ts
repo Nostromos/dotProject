@@ -1,5 +1,5 @@
-import { getRepo } from "./api/repoFetcher.js"
+import { getLastCommit } from "./api/repoFetcher.js"
 
-let response = await getRepo("what.lol");
+let response: any = await getLastCommit("Nostromos", "what.lol");
 
-console.log(response);
+console.log(response.commit.author.date);
