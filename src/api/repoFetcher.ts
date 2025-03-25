@@ -102,5 +102,9 @@ export async function getTopics(params: GetTopicsParams): Promise<GetTopicsRespo
 export async function getLastCommit(params: ListCommitsParams): Promise<string | undefined> {
   console.log("☑️ Getting last commit...");
   const response = await octokit.rest.repos.listCommits(params);
-  return response.data[0]?.commit?.author?.date;
+  
+  const [latestCommit] = response.data;
+  if (!latestCommit?.commit?.author?.date) return undefined;
+
+  return latestCommit.commit.author.date;
 }
