@@ -24,9 +24,9 @@ Core Logic (TS + Node)
 - [ ] Repository Categorization – Organize repositories into categories based on metadata (e.g., frontend, backend, archived).
 - [ ] Dependency Extraction – Parse package.json, requirements.txt, or other dependency files to list frameworks/tools.
 - [ ] Repository Health Metrics – Include basic repo health indicators like:
-  - [ ] Last commit date
+  - [x] Last commit date
   - [ ] Open issues count
-  - [ ] Number of contributors
+  - [x] Number of contributors
   - [ ] Presence of key files (README.md, .gitignore, LICENSE)
 - [ ] GitHub Topics & Tags – Fetch and include GitHub topics (e.g., react, nodejs) if available.
 - [ ] Code Size & File Breakdown – Get repo size and count files by type (e.g., how many .ts, .js, .py files).
