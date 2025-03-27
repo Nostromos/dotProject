@@ -96,7 +96,7 @@ If the request continues to fail due to secondary rate limiting, wait for an exp
 
 ## Additional Techniques for getting more out of the API
 
-Thanks to [Endor Labs](https://endorlabs.com) and [Sebastian Cai](https://www.linkedin.com/in/sebastian-cai/) for writing a [useful article]([^3]) about how they get more out of the Github API. All of the info in this section comes from that article and is minimally paraphrased.
+Thanks to [Endor Labs](https://endorlabs.com) and [Sebastian Cai](https://www.linkedin.com/in/sebastian-cai/) for writing a [useful article](^3) about how they get more out of the Github API. All of the info in this section comes from that article and is minimally paraphrased.
 
 
 ### Increase Page Size Limits
