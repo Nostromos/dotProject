@@ -1,6 +1,8 @@
 # Rate Limiting
 
-## Clarification Questions
+I'm going to need rate limiting for this at some point and it's a common-sense feature to build for an API-dependent tool. Good netizens should be rate-limiting their slop!
+
+## Clarifying Questions
 
 ### What kind of GitHub API requests are you making—REST, GraphQL, or both?
 
