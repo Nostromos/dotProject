@@ -2,22 +2,29 @@
 
 ## Clarification Questions
 
-*What kind of GitHub API requests are you making—REST, GraphQL, or both?*
+### What kind of GitHub API requests are you making—REST, GraphQL, or both?
+
 Right now, only REST requests using Octokit.
 
-*Is this being used in a CLI tool, backend service, or something else?*
+
+### Is this being used in a CLI tool, backend service, or something else?
+
 CLI took to start but will be a backend service in the future. My thinking is to use Octokit's rate-limiting feature so I won't have to change much when I build the web service.
 
-*Are requests made on behalf of one user or multiple users with different tokens?*
+
+### Are requests made on behalf of one user or multiple users with different tokens?
+
 Right now, on behalf of one user. For the web service, multiple users with different tokens OR as a Github App, with its own auth and much higher limits.
 
-*Is accuracy/timeliness more important, or is reducing API usage the main goal?*
+
+### Is accuracy/timeliness more important, or is reducing API usage the main goal?
+
 I'll bias towards accuracy and timeliness first but I do plan on building some common-sense stuff to prevent unecessary API usage.
 
 
 ## Background Information
 
-### Primary Rate Limits
+### Primary Rate Limits[^1]
 
 Github limits the number of REST API requests you can make in a specific amount of time. Certain endpoints have more restrictive limits than others, like the search endpoint. The GraphQL API has a separate primary rate limit. 
 
@@ -34,17 +41,17 @@ Here's a high level overview:
 | GH App owned by Enterprise Cloud Org         | Installation Access Token | 15000 / hr        |
 
 
-### Secondary Rate Limits
+### Secondary Rate Limits[^1]
 
 In addition to primary rate limits, secondary rate limits are also enforced if you do things like:
 - Make more than 100 concurrent requests at one time, shared across the REST API and the GraphQL API.
 - Make more than 900 points worth of requests to a single REST API endpoint per minute or 2000 points for the GraphQL API.
 - Make too many requests per minute - No more than 90s of CPU time per 60s of real time is allowed and no more than 60s of CPU time may be for the GraphQL API
 - Make too many requests that consume excessive compute resources in a short period of time
-- Create too much content on Github in a short amount of time. No more than 80 content-generating requests per minute and no more than 500 content-generating requests per hour. There are lower content creation limits for certain endpoints. **This limit includes actions taken on the Github Web Interface** as well as via REST and GraphQL APIs.
+- Create too much content on Github in a short amount of time. No more than 80 content-generating requests per minute and no more than 500 content-generating requests per hour. There are lower content creation limits for certain endpoints. **This limit includes actions taken on the Github Web Interface** as well as via REST and GraphQL APIs.[^1]
 
 
-#### Calculating points for the secondary rate limit
+#### Calculating points for the secondary rate limit[^1]
 
 Some secondary rate limits are determined by the point values of requests. For GraphQL requests, these point values are separate from the point value calculations for the primary rate limit.
 
@@ -65,7 +72,7 @@ If secondary rate limit is exceeded, requests will return a `403` or `429` AND a
 If the request continues to fail due to secondary rate limiting, wait for an exponentially increasing amount of time between retries and throw an error after a specified number of retries. 
 
 
-## Best Practices for using the REST API
+## Best Practices for using the REST API[^2]
 
 1. Avoid polling - not super relevant to this use case yet.
 2. Make authenticated requests - ✅
@@ -74,7 +81,7 @@ If the request continues to fail due to secondary rate limiting, wait for an exp
 5. Handle Rate Limit Errors Appropriately - I plan to do this using Octokit's native rate-limiting and retry feature but I should probably build some rate limiting in on my side, possibly at the queue level so I don't lose requests and/or so I can message appropriately to users.
 6. Follow Redirects - I hadn't thought about this. `TODO: Check if Octokit also handles redirects or if I need to build that in myself`
 7. Do not manually parse URLs - I do not do this and will not do this.
-8. Use conditional requests if appropriate - THIS IS USEFUL. 
+8. Use conditional requests if appropriate - THIS IS USEFUL. [^2]
    
   > Most endpoints return an etag header, and many endpoints return a last-modified header. You can use the values of these headers to make conditional GET requests. If the response has not changed, you will receive a 304 Not Modified response. Making a conditional request does not count against your primary rate limit if a 304 response is returned.
   > 
@@ -84,12 +91,12 @@ If the request continues to fail due to secondary rate limiting, wait for an exp
   > For example, if a previous request returned a `last-modified` header value of `Wed, 25 Oct 2023 19:17:59 GMT`, you can use the `if-modified-since` header in a future request:
   > `curl https://api.github.com/repos/github/docs --include --header 'if-modified-since: Wed, 25 Oct 2023 19:17:59 GMT'`
   > Conditional requests for unsafe methods, such as POST, PUT, PATCH, and DELETE are not supported unless otherwise noted in the documentation for a specific endpoint.
-9. Do not ignore errors - I need to build in better error handling. Proper typing should ensure that I'm not passing incorrect values to the API so shouldn't see too many `4xx` errors but I have zero handling for `5xx`, ie. server-side issues.
+9. Do not ignore errors - I need to build in better error handling. Proper typing should ensure that I'm not passing incorrect values to the API so shouldn't see too many `4xx` errors but I have zero handling for `5xx`, ie. server-side issues.[^2]
 
 
 ## Additional Techniques for getting more out of the API
 
-Thanks to (Endor Labs)[https://endorlabs.com] and (Sebastian Cai)[https://www.linkedin.com/in/sebastian-cai/] for writing a (useful article)[[^3]] about how they get more out of the Github API. All of the info in this section comes from that article and is minimally paraphrased.
+Thanks to [Endor Labs](https://endorlabs.com) and [Sebastian Cai](https://www.linkedin.com/in/sebastian-cai/) for writing a [useful article]([^3]) about how they get more out of the Github API. All of the info in this section comes from that article and is minimally paraphrased.
 
 
 ### Increase Page Size Limits
@@ -147,6 +154,6 @@ Here are a few ways to accomplish that:
 - [ ] Increase page size limits from default (30) to maximum (usually 100)[^3]
 - [ ] Explore conditional requests using `etag`, `last-modified`, `if-none-match`, and `if-modified-since` to ensure we're not requesting data we already have
 
-[^1]: (Rate Limits for the REST API - Github)[https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28]
-[^2]: (Best practices for using the REST API - Github)[https://docs.github.com/en/rest/using-the-rest-api/best-practices-for-using-the-rest-api?apiVersion=2022-11-28]
-[^3]: (How to Get the Most out of GitHub API Rate Limits)[https://www.endorlabs.com/learn/how-to-get-the-most-out-of-github-api-rate-limits]
+[^1]: [Rate Limits for the REST API - Github](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28)
+[^2]: [Best practices for using the REST API - Github](https://docs.github.com/en/rest/using-the-rest-api/best-practices-for-using-the-rest-api?apiVersion=2022-11-28)
+[^3]: [How to Get the Most out of GitHub API Rate Limits](https://www.endorlabs.com/learn/how-to-get-the-most-out-of-github-api-rate-limits)
