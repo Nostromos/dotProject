@@ -1,3 +1,12 @@
+/**
+ * Initializes and exports an authenticated Octokit client for interacting with the GitHub API.
+ *
+ * This module:
+ * - Loads a personal access token from the environment
+ * - Authenticates the client using `@octokit/auth-token`
+ * - Sets up a default user agent
+ * - Validates the authentication by calling GitHub's `getAuthenticated` endpoint on load
+ */
 import { Octokit } from "octokit";
 import { createTokenAuth } from "@octokit/auth-token";
 import dotenv from 'dotenv';
@@ -21,6 +30,10 @@ const OCTOKIT_CONFIG = {
 
 const octokit = new Octokit(OCTOKIT_CONFIG);
 
+/**
+ * Validates that the Octokit client is authenticated by making a request to the GitHub API.
+ * Logs the authenticated username on success or an error message on failure.
+ */
 async function checkAuth() {
   try {
     const { data } = await octokit.rest.users.getAuthenticated();
