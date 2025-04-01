@@ -11,6 +11,7 @@
     "@octokit/core": "^6.1.4",
     "@octokit/openapi-types": "^24.0.0",
     "@octokit/plugin-rest-endpoint-methods": "^13.3.1",
+    "@octokit/plugin-throttling": "^9.6.0",
     "dotenv": "^16.4.7",
     "octokit": "^4.1.2"
   },
