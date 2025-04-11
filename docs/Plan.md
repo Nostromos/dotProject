@@ -1,8 +1,8 @@
 # Initial Plan & Thinking
 
-- Start with core logic for scraping github, getting the info, and writing to file
-  - For writing to file, abstract it away so adding DB easier down the line
-- 
+## Core Logic
+
+- [ ] Read/write to file
 
 
 ## Feature List
@@ -55,3 +55,9 @@ Basic Web App
 - [ ] Multi-User Support – Allow multiple users to manage their own projects.
 
 See issues for working list & plan.
+
+## Periodic Updates
+
+| Date | Description |
+|------|-------------|
+| 04/11| Getting into RC has thrown me off this a bit. Very tempted to scrap it and either start over or cut a bunch of the features. Middle ground is reappraising feature list, cutting a bunch, and shipping what I've got. Will do that over the weekend and go for MVP on Monday. |
