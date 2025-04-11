@@ -1,5 +1,8 @@
 {
   "type": "module",
+  "scripts": {
+    "start": "node --loader ts-node/esm ./src/index.ts"
+  },
   "devDependencies": {
     "@octokit/types": "^13.8.0",
     "@types/node": "^22.13.8",
