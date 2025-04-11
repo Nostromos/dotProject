@@ -7,9 +7,13 @@
  * - Sets up a default user agent
  * - Validates the authentication by calling GitHub's `getAuthenticated` endpoint on load
  */
+
 import { Octokit } from "octokit";
 import { createTokenAuth } from "@octokit/auth-token";
+import { throttling } from "@octokit/plugin-throttling";
+import type { ThrottlingOptions } from "@octokit/plugin-throttling";
 import dotenv from 'dotenv';
+import type { RequestOptions } from "@octokit/types";
 
 dotenv.config();
 console.log("🔑 Loaded token");
@@ -20,13 +24,45 @@ if (!token) throw new Error("❌ GITHUB_PERSONAL_ACCESS_TOKEN not loaded into en
 const auth = createTokenAuth(token);
 const GITHUB_AUTH_TOKEN = await auth();
 
-const OCTOKIT_CONFIG = {
-  userAgent: "dotp/v0.0.4",
-  auth: GITHUB_AUTH_TOKEN.token,
-  // default auth strategy is token - this will change in future
+const handleRateLimit: any = ( // type used to be ThrottlingOptions['onRateLimit'] but it made typescript complain and I couldn't figure it out after 2 hours of debugging
+  retryAfter: number,
+  options: RequestOptions,
+  octokit: InstanceType<typeof MyOctokit>,
+  retryCount: number
+) => {
+  octokit.log.warn(`Request quota exhausted for request ${options.method} ${options.url}`);
+  if (retryCount < 1) {
+    octokit.log.info(`Retrying after ${retryAfter} seconds!`);
+    return true;
+  };
+  return false;
 };
 
-const octokit = new Octokit(OCTOKIT_CONFIG);
+const handleSecondaryRateLimit: any = ( // type used to be ThrottlingOptions['onSecondaryRateLimit'] but it made typescript complain
+  retryAfter: number,
+  options: RequestOptions,
+  octokit: InstanceType<typeof MyOctokit>
+) => {
+  // does not retry, only logs a warning
+  octokit.log.warn(
+    `SecondaryRateLimit detected for request ${options.method} ${options.url}`,
+  );
+  return false;
+};
+
+const OCTOKIT_CONFIG: MyOctokitOptions = {
+  userAgent: "dotp/v0.0.4",
+  auth: GITHUB_AUTH_TOKEN.token, // default auth strategy is token - this will change in future
+  timeZone: "America/New_York",
+  throttle: {
+    onRateLimit: handleRateLimit,
+    onSecondaryRateLimit: handleSecondaryRateLimit,
+  },
+};
+
+const MyOctokit = Octokit.plugin(throttling);
+type MyOctokitOptions = ConstructorParameters<typeof MyOctokit>[0];
+const octokit = new MyOctokit(OCTOKIT_CONFIG);
 
 /**
  * Validates that the Octokit client is authenticated by making a request to the GitHub API.
