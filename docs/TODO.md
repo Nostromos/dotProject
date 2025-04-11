@@ -1,4 +1,0 @@
-- [x] Set up cliHandler.ts to allow running from the terminal.
-- [ ] **In Progress** - Add batch processing, rate limiting, and dependency extraction.
-- [ ] Integrate logging & error handling.
-- [ ] Enhance with screenshot discovery & local repo support.
