@@ -6,20 +6,15 @@ export type Project = {
   technologies?: string[];
   status?: "In Progress" | "Completed" | "On Hold" | "Abandoned"; // Extend as needed
   urls: {
-    repository?: string;
-    demo?: string;
-    production?: string;
+    repository: string | null;
+    production: string | null;
   };
   screenshots?: string;
   features?: string[];
   contributors?: {
-    [key: string]: {
-      name: string;
-      role: string;
-      email: string;
-      company: string;
-    };
-  };
+      login: string;
+      avatar_url: string;
+    }[];
   date_started: string; // Could be Date if converted properly
   date_completed?: string;
   challenges?: string[];

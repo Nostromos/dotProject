@@ -68,7 +68,7 @@ const octokit = new MyOctokit(OCTOKIT_CONFIG);
  * Validates that the Octokit client is authenticated by making a request to the GitHub API.
  * Logs the authenticated username on success or an error message on failure.
  */
-async function checkAuth() {
+export async function checkAuth() {
   try {
     const { data } = await octokit.rest.users.getAuthenticated();
     console.log(`✅ Authenticated as ${data.login}`);

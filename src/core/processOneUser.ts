@@ -1,10 +1,10 @@
-import { getAllRepos, getRepo, getCollaborators, getRepoLanguages, getTopics, getLastCommit } from "../api/repoFetcher.js";
+import { getAllRepos, getRepo, getCollaborators, getRepoLanguages, getTopics, getLastCommit } from "../api/infoFetcher.js";
 
 export async function processOneUser(userName: string) {
   try {
     const allRepos = await getAllRepos({ username: userName });
     const detailedRepos = new Array(allRepos.length);
-    
+
     for (let repo of allRepos) {
       const oneRepo = await getRepo({
         owner: repo.owner.login,

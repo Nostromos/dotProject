@@ -58,6 +58,7 @@ See issues for working list & plan.
 
 ## Periodic Updates
 
-| Date | Description |
-|------|-------------|
+| Date  | Description                                                                                                                                                                                                                                                                   |
+| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 04/11 | Getting into RC has thrown me off this a bit. Very tempted to scrap it and either start over or cut a bunch of the features. Middle ground is reappraising feature list, cutting a bunch, and shipping what I've got. Will do that over the weekend and go for MVP on Monday. |
+| 04/15 | Somehow royally screwed this up and returning to it has shown me how stupid my design/architecture for this was. Strongly considering killing most of this and restarting. At the very least, gonna figure out why octokit isn't initializing correctly.                      |
