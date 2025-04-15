@@ -3,6 +3,11 @@ import cleanUp from './utils/index.js';
 
 const username = 'Nostromos';
 
-prepareFiles(username);
+try {
+  prepareFiles(username);
+} catch (err) {
+  console.log('Error here');
+  console.error(err);
+}
 
 cleanUp();

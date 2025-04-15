@@ -5,7 +5,7 @@ export default async function cleanUp() {
 
   try {
     const cleanTestFiles = await fsRm(PATH, { recursive: true });
-    console.log(cleanTestFiles);
+    console.log('Files cleaned.');
   } catch (err) {
     if (err instanceof Error) {
       console.error(err);
