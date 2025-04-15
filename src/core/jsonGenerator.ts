@@ -7,4 +7,5 @@ export async function buildProject(info: object, path: string) {
   } catch (err) {
     console.error(err);
   }
-}
+};
+
