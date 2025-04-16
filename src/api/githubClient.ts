@@ -9,7 +9,6 @@
  */
 
 import { Octokit } from "octokit";
-import { createTokenAuth } from "@octokit/auth-token";
 import { throttling } from "@octokit/plugin-throttling";
 // import type { ThrottlingOptions } from "@octokit/plugin-throttling";
 import dotenv from 'dotenv';
@@ -22,11 +21,9 @@ const token = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
 if (token) {
   console.log("🔑 Loaded token");
 } else {
-  throw new Error("❌ GITHUB_PERSONAL_ACCESS_TOKEN not loaded into env");
+  console.error("❌ GITHUB_PERSONAL_ACCESS_TOKEN not found. Please set it in your .env file.");
+  process.exit(1);
 };
-
-const auth = createTokenAuth(token);
-const GITHUB_AUTH_TOKEN = await auth();
 
 const handleRateLimit: any = ( // type used to be ThrottlingOptions['onRateLimit'] but it made typescript complain and I couldn't figure it out after 2 hours of debugging
   retryAfter: number,
@@ -56,7 +53,7 @@ const handleSecondaryRateLimit: any = ( // type used to be ThrottlingOptions['on
 
 const OCTOKIT_CONFIG: MyOctokitOptions = {
   userAgent: "dotp/v0.0.4",
-  auth: GITHUB_AUTH_TOKEN.token, // default auth strategy is token - this will change in future
+  auth: process.env.GITHUB_PERSONAL_ACCESS_TOKEN, // default auth strategy is token - this will change in future
   timeZone: "America/New_York",
   throttle: {
     onRateLimit: handleRateLimit,
