@@ -14,9 +14,8 @@ import { throttling } from "@octokit/plugin-throttling";
 // import type { ThrottlingOptions } from "@octokit/plugin-throttling";
 import dotenv from 'dotenv';
 import type { RequestOptions } from "@octokit/types";
-import path from 'path';
 
-dotenv.config({ path: 'src/.env' });
+dotenv.config();
 
 const token = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
 
