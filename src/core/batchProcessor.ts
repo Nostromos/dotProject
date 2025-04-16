@@ -81,8 +81,9 @@ export async function processOneUser(userName: string) {
         contributors: collaborators,
         date_started: oneRepo.created_at,
         last_activity: oneRepo.updated_at,
+        last_commit: lastCommit,
       };
-      const PATH_PREFIX = "/Users/figgefenk/Dev/projectTemplater/test/examples/";
+      const PATH_PREFIX = "/Users/figgefenk/Dev/projectTemplater/test/examples/Nostromos/.cache/";
       console.log(`Writing File: ${repo.name}`)
       await writeFile(project, PATH_PREFIX)
     }
