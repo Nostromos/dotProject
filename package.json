@@ -1,7 +1,8 @@
 {
   "type": "module",
   "scripts": {
-    "start": "node --loader ts-node/esm ./src/index.ts",
+    "start": "node --loader ts-node/esm ./src/index.js",
+    "startt": "node --loader ts-node/esm ./index.ts",
     "startpaths": "node --loader ts-node/esm --require tsconfig-paths/register ./src/index.ts"
   },
   "devDependencies": {

@@ -11,15 +11,20 @@
 import { Octokit } from "octokit";
 import { createTokenAuth } from "@octokit/auth-token";
 import { throttling } from "@octokit/plugin-throttling";
-import type { ThrottlingOptions } from "@octokit/plugin-throttling";
+// import type { ThrottlingOptions } from "@octokit/plugin-throttling";
 import dotenv from 'dotenv';
 import type { RequestOptions } from "@octokit/types";
+import path from 'path';
 
-dotenv.config();
-console.log("🔑 Loaded token");
+dotenv.config({ path: 'src/.env' });
+
 const token = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
 
-if (!token) throw new Error("❌ GITHUB_PERSONAL_ACCESS_TOKEN not loaded into env");
+if (token) {
+  console.log("🔑 Loaded token");
+} else {
+  throw new Error("❌ GITHUB_PERSONAL_ACCESS_TOKEN not loaded into env");
+};
 
 const auth = createTokenAuth(token);
 const GITHUB_AUTH_TOKEN = await auth();
