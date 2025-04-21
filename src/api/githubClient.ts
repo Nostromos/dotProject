@@ -1,11 +1,12 @@
 /**
  * Initializes and exports an authenticated Octokit client for interacting with the GitHub API.
  *
- * This module:
- * - Loads a personal access token from the environment
- * - Authenticates the client using `@octokit/auth-token`
- * - Sets up a default user agent
- * - Validates the authentication by calling GitHub's `getAuthenticated` endpoint on load
+ * Features:
+ * - Loads a personal access token from the environment.
+ * - Sets up throttling to handle API rate limits.
+ * - Authenticates with the GitHub API and validates the connection.
+ *
+ * @module githubClient
  */
 
 import { Octokit } from "octokit";
@@ -25,6 +26,15 @@ if (token) {
   process.exit(1);
 };
 
+/**
+ * Handles primary API rate limits.
+ *
+ * @param retryAfter - Delay in seconds before retrying the request.
+ * @param options - The request options from Octokit.
+ * @param octokit - The Octokit instance handling the request.
+ * @param retryCount - The number of times this request has been retried.
+ * @returns A boolean indicating whether the request should be retried.
+ */
 const handleRateLimit: any = ( // type used to be ThrottlingOptions['onRateLimit'] but it made typescript complain and I couldn't figure it out after 2 hours of debugging
   retryAfter: number,
   options: RequestOptions,
@@ -39,6 +49,14 @@ const handleRateLimit: any = ( // type used to be ThrottlingOptions['onRateLimit
   return false;
 };
 
+/**
+ * Handles secondary rate limits by logging a warning without retrying.
+ *
+ * @param retryAfter - Delay in seconds before retrying the request.
+ * @param options - The request options from Octokit.
+ * @param octokit - The Octokit instance handling the request.
+ * @returns A boolean indicating whether the request should be retried (always false).
+ */
 const handleSecondaryRateLimit: any = ( // type used to be ThrottlingOptions['onSecondaryRateLimit'] but it made typescript complain
   retryAfter: number,
   options: RequestOptions,
@@ -51,6 +69,9 @@ const handleSecondaryRateLimit: any = ( // type used to be ThrottlingOptions['on
   return false;
 };
 
+/**
+ * Configuration object for the Octokit client.
+ */
 const OCTOKIT_CONFIG: MyOctokitOptions = {
   userAgent: "dotp/v0.0.4",
   auth: process.env.GITHUB_PERSONAL_ACCESS_TOKEN, // default auth strategy is token - this will change in future
@@ -66,7 +87,7 @@ type MyOctokitOptions = ConstructorParameters<typeof MyOctokit>[0];
 const octokit = new MyOctokit(OCTOKIT_CONFIG);
 
 /**
- * Validates that the Octokit client is authenticated by making a request to the GitHub API.
+ * Validates that the Octokit client is authenticated by calling the GitHub API.
  * Logs the authenticated username on success or an error message on failure.
  */
 export async function checkAuth() {
@@ -84,4 +105,7 @@ export async function checkAuth() {
 
 checkAuth();
 
+/**
+ * The pre-configured and authenticated Octokit instance for interacting with the GitHub API.
+ */
 export default octokit;
