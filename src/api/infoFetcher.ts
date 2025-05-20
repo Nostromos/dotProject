@@ -99,10 +99,10 @@ export async function getTopics(params: GetTopicsParams): Promise<GetTopicsRespo
  * @param params - Params including `owner` and `repo`. We also pass `per_page` to limit how many commits are returned.
  * @returns A string ISO timestamp of the most recent commit, or `undefined` if no commits exist.
  */
-export async function getLastCommit(params: ListCommitsParams): Promise<string | undefined> {
+export async function getLastCommit(params: ListCommitsParams): Promise<ListCommitsResponse | string | undefined> {
   console.log("☑️ Getting last commit...");
   const response = await octokit.rest.repos.listCommits(params);
-  
+
   const [latestCommit] = response.data;
   if (!latestCommit?.commit?.author?.date) return undefined;
 
