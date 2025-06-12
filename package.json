@@ -11,9 +11,5 @@
   },
   "workspaces": [
     "cli"
-  ],
-  "devDependencies": {
-    "@types/jest": "^29.5.14",
-    "@types/mocha": "^10.0.10"
-  }
+  ]
 }
