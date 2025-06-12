@@ -1,18 +1,34 @@
 {
   "name": "dotproject-cli",
   "version": "0.0.1",
-  "description": "CLI for dotProject",
-  "license": "ISC",
-  "author": "Michael Monaghan <michael@monaghan.nyc>",
-  "type": "commonjs",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
+  "private": "true",
+  "type": "module",
+  "description": "Programmatically generate your projects page",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "dotproject": "./bin/run.js"
   },
   "scripts": {
+    "dev": "tsx src/cli.ts",
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "Michael Monaghan <michael@monaghan.nyc>",
+  "license": "ISC",
+  "oclif": {
+    "bin": "dotproject",
+    "commands": "./dist/commands",
+    "dirname": "dotproject",
+    "topicSeparator": " "
+  },
+  "dependencies": {
+    "@oclif/core": "^4.3.3"
+  },
   "devDependencies": {
-    "typescript": "^5.8.3"
+    "@types/node": "^18.19.111",
+    "ts-node": "^10.9.2"
   }
 }
