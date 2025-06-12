@@ -1,12 +1,21 @@
 package main
 
+// --- Standard Libs ---
 import (
 	"fmt"
 	"net"
-
-	// "strings"
 	"os"
 )
+
+// --- Third-Party ---
+
+// --- Internal Deps ---
+// import (
+// 	"github.com/Nostromos/dotprojectv2/api/internal/github"
+// 	"github.com/Nostromos/dotprojectv2/api/internal/handlers"
+// 	"github.com/Nostromos/dotprojectv2/api/internal/cache"
+// )
+
 
 const (
 	PORT    = "8080"
