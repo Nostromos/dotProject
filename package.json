@@ -1,0 +1,12 @@
+{
+  "name": "dotprojectv2",
+  "version": "0.0.1",
+  "description": "Put together project pages programmatically!",
+  "license": "ISC",
+  "author": "Michael Monaghan <michael@monaghan.nyc>",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
