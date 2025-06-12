@@ -51,10 +51,6 @@ Thumbs.db
 .Trashes
 .VolumeIcon.icns
 
-# PHP specific
-*.phpunit.result.cache
-.phpunit.result.cache
-.phpstorm.meta.php
 
 # Temporary files
 *.swp
