@@ -1,0 +1,66 @@
+# Node modules (if using frontend tools)
+node_modules/
+
+# Composer dependencies
+/vendor/
+/composer.lock
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs and runtime files
+*.log
+logs/
+tmp/
+cache/
+sessions/
+
+# Build directories
+dist/
+build/
+release/
+
+# Coverage reports
+coverage/
+lcov-report/
+
+# IDE and editor settings
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# MacOS Finder info
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# PHP specific
+*.phpunit.result.cache
+.phpunit.result.cache
+.phpstorm.meta.php
+
+# Temporary files
+*.swp
+*~
+.session
+
+# DotProject custom temp or upload dirs
+uploads/
+tmpfiles/

@@ -1,0 +1,18 @@
+{
+  "name": "dotproject-cli",
+  "version": "0.0.1",
+  "description": "CLI for dotProject",
+  "license": "ISC",
+  "author": "Michael Monaghan <michael@monaghan.nyc>",
+  "type": "commonjs",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
