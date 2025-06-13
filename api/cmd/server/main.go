@@ -1,20 +1,21 @@
 package main
 
-// --- Standard Libs ---
 import (
-	"fmt"
-	"net"
-	"os"
+	// --- Standard Lib ---
+	// "fmt"
+	// "net"
+	"net/http"
+	// "os"
+
+	// --- Third-Party ---
+
+	// --- Internal ---
+	// 	"github.com/Nostromos/dotprojectv2/api/internal/handlers"
+	// 	"github.com/Nostromos/dotprojectv2/api/internal/cache"
+	"github.com/Nostromos/dotprojectv2/api/internal/github" 
 )
 
-// --- Third-Party ---
 
-// --- Internal Deps ---
-import (
-	"github.com/Nostromos/dotprojectv2/api/internal/github"
-// 	"github.com/Nostromos/dotprojectv2/api/internal/handlers"
-// 	"github.com/Nostromos/dotprojectv2/api/internal/cache"
-)
 
 
 const (
@@ -24,16 +25,7 @@ const (
 )
 
 func main() {
-	listener, err := net.Listen("tcp", ADDRESS)
-	if err != nil {
-		fmt.Println("Error listening:", err)
-		os.Exit(1)
-	}
-	defer listener.Close()
+	gh := github.Authenticate() // get a github client
 
-	fmt.Println("Server listening on: ", ADDRESS)
-
-	client := github.Authenticate()
-
-	github.GetReposByUser(client)
+	http.ListenAndServe(ADDRESS)
 }

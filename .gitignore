@@ -14,7 +14,6 @@ node_modules/
 *.log
 logs/
 tmp/
-cache/
 sessions/
 
 # Build directories
