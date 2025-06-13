@@ -14,7 +14,7 @@ func Authenticate() *github.Client {
 }
 
 func GetReposByUser(client *github.Client, ctx context.Context, owner string, repo string) ([]*github.Repository, error) {
-	repos, _, err := client.Repositories.ListByUser(context.Background(), owner, &github.RepositoryListByUserOptions{
+	repos, _, err := client.Repositories.ListByUser(ctx, owner, &github.RepositoryListByUserOptions{
 		Type:      "owner",
 		Sort:      "Updated",
 		Direction: "desc",
