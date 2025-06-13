@@ -2,21 +2,19 @@ package main
 
 import (
 	// --- Standard Lib ---
-	// "fmt"
-	// "net"
+	"fmt"
 	"net/http"
-	// "os"
+	"os"
 
 	// --- Third-Party ---
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 
 	// --- Internal ---
-	// 	"github.com/Nostromos/dotprojectv2/api/internal/handlers"
-	// 	"github.com/Nostromos/dotprojectv2/api/internal/cache"
-	"github.com/Nostromos/dotprojectv2/api/internal/github" 
+	"github.com/Nostromos/dotprojectv2/api/internal/handlers"
+	"github.com/Nostromos/dotprojectv2/api/internal/cache"
+	"github.com/Nostromos/dotprojectv2/api/internal/github"
 )
-
-
-
 
 const (
 	PORT    = "8080"
@@ -25,7 +23,20 @@ const (
 )
 
 func main() {
-	gh := github.Authenticate() // get a github client
+	client := github.Authenticate() 
+	cache := cache.GetCache()
+	handler := handlers.HandleRequests(client, cache)
 
-	http.ListenAndServe(ADDRESS)
+	r := chi.NewRouter()
+	r.Use(middleware.Logger)
+	r.Get("/repos/{owner}/", handler)
+	r.Get("/health", handlers.Health)
+
+	fmt.Printf("--> API Listening on: %s", ADDRESS)
+
+	err := http.ListenAndServe(ADDRESS, r)
+	if err != nil {
+		fmt.Printf("--> API Error: %s", err)
+		os.Exit(1)
+	}
 }
