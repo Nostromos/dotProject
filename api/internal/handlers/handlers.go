@@ -3,10 +3,10 @@ package handlers
 import (
 	// --- Standard Lib ---
 	"context"
-	"net/http"
-	"time"
 	"encoding/json"
 	"fmt"
+	"net/http"
+	"time"
 
 	// --- Third Party ---
 	"github.com/go-chi/chi/v5"
@@ -27,14 +27,15 @@ func HandleRequests(client *gogithub.Client, cache *gocache.Cache) http.HandlerF
 
 		if owner == "" || repo == "" {
 			writeError(w, http.StatusBadRequest, fmt.Errorf("missing owner or repo"))
+			return
 		}
 
 		// TODO: Check cache here
 
 		info, err := github.GetReposByUser(client, ctx)
 		if err != nil {
-			writeError(w, 502, err) 
-			return 
+			writeError(w, 502, err)
+			return
 		}
 
 		writeJSON(w, http.StatusOK, info)
