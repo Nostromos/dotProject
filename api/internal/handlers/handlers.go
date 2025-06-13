@@ -32,7 +32,7 @@ func HandleRequests(client *gogithub.Client, cache *gocache.Cache) http.HandlerF
 
 		// TODO: Check cache here
 
-		info, err := github.GetReposByUser(client, ctx)
+		info, err := github.GetReposByUser(client, ctx, owner, repo)
 		if err != nil {
 			writeError(w, 502, err)
 			return
