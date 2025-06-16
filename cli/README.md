@@ -29,8 +29,7 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`dotproject hello PERSON`](#dotproject-hello-person)
-* [`dotproject hello world`](#dotproject-hello-world)
+* [`dotproject generate OWNER [REPO]`](#dotproject-generate-owner-repo)
 * [`dotproject help [COMMAND]`](#dotproject-help-command)
 * [`dotproject plugins`](#dotproject-plugins)
 * [`dotproject plugins add PLUGIN`](#dotproject-plugins-add-plugin)
@@ -43,47 +42,30 @@ USAGE
 * [`dotproject plugins unlink [PLUGIN]`](#dotproject-plugins-unlink-plugin)
 * [`dotproject plugins update`](#dotproject-plugins-update)
 
-## `dotproject hello PERSON`
+## `dotproject generate OWNER [REPO]`
 
-Say hello
+Generate an INFO.yml for a specific repo or all of a user's repos.
 
 ```
 USAGE
-  $ dotproject hello PERSON -f <value>
+  $ dotproject generate OWNER [REPO] [-u <value>]
 
 ARGUMENTS
-  PERSON  Person to say hello to
+  OWNER  The owner of the repository or the user whose repositories you want to generate info for
+  REPO   The repository to generate for
 
 FLAGS
-  -f, --from=<value>  (required) Who is saying hello
+  -u, --from=<value>  The user or owner of a repo
 
 DESCRIPTION
-  Say hello
+  Generate an INFO.yml for a specific repo or all of a user's repos.
 
 EXAMPLES
-  $ dotproject hello friend --from oclif
-  hello friend from oclif! (./src/commands/hello/index.ts)
+  $ dotproject generate generate nostromos dotprojectv2
+  INFO.yml generated at ./.project/INFO.yml!
 ```
 
-_See code: [src/commands/hello/index.ts](https://github.com/Nostromos/dotprojectv2/blob/v0.0.0/src/commands/hello/index.ts)_
-
-## `dotproject hello world`
-
-Say hello world
-
-```
-USAGE
-  $ dotproject hello world
-
-DESCRIPTION
-  Say hello world
-
-EXAMPLES
-  $ dotproject hello world
-  hello world! (./src/commands/hello/world.ts)
-```
-
-_See code: [src/commands/hello/world.ts](https://github.com/Nostromos/dotprojectv2/blob/v0.0.0/src/commands/hello/world.ts)_
+_See code: [src/commands/generate/index.ts](https://github.com/Nostromos/dotprojectv2/blob/v0.0.0/src/commands/generate/index.ts)_
 
 ## `dotproject help [COMMAND]`
 
