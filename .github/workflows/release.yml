@@ -14,7 +14,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
       - name: Run tests
-        run: go test -v .
+        run: go test -v ./api/...
       - name: Build the binary
         run: go build ./api/cmd/server -o api 
       - name: Upload to GH
