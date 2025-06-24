@@ -14,6 +14,7 @@ import (
 	"github.com/Nostromos/dotprojectv2/api/internal/handlers"
 	"github.com/Nostromos/dotprojectv2/api/internal/cache"
 	"github.com/Nostromos/dotprojectv2/api/internal/github"
+	"github.com/Nostromos/dotprojectv2/api/internal/setup"
 )
 
 const (
@@ -23,6 +24,8 @@ const (
 )
 
 func main() {
+	setup.LoadEnv()
+
 	client := github.Authenticate() 
 	cache := cache.GetCache()
 	handler := handlers.HandleRequests(client, cache)
