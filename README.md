@@ -1,7 +1,7 @@
 <p align="center">
   <img src="./static/dotproject-v2-header.svg" alt="Dotproject header" />
 </p>
-<h1 align="center"><i>dotProject v2</i></h1>
+<h1 align="center"><i>dotProject</i></h1>
 
 <p align="center">
   <a href="https://golang.org"><img alt="Go" src="https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white" /></a>
