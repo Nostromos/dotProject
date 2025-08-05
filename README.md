@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./static/dotproject-v2-header.svg" alt="Dotproject header" width="600" />
+  <img src="./static/dotproject-v2-header.svg" alt="Dotproject header" />
 </p>
 <h1 align="center"><i>dotProject v2</i></h1>
 
