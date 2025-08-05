@@ -1,7 +1,7 @@
 {
-  "name": "dotproject",
-  "description": "Programmatically generate projects pages",
-  "version": "0.0.0",
+  "name": "dotproject-cli",
+  "description": "Programmatic project pages via your CLI",
+  "version": "0.1.5",
   "author": "Michael Monaghan <michael@monaghan.nyc>",
   "bin": {
     "dotproject": "./bin/run.js"

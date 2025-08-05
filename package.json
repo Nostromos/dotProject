@@ -1,8 +1,8 @@
 {
   "name": "dotprojectv2",
-  "version": "0.0.1",
-  "description": "Put together project pages programmatically!",
-  "license": "ISC",
+  "version": "0.1.5",
+  "description": "Programatic project pages",
+  "license": "MIT",
   "author": "Michael Monaghan <michael@monaghan.nyc>",
   "type": "commonjs",
   "main": "index.js",

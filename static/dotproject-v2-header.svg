@@ -1,0 +1,183 @@
+<svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definitions -->
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#161b22;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Go gradient -->
+    <linearGradient id="go-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ADD8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00a29c;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- TypeScript gradient -->
+    <linearGradient id="ts-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3178C6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#235a9f;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1c2128" stroke-width="1" opacity="0.5"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="400" fill="url(#bg-gradient)"/>
+  
+  <!-- Grid overlay -->
+  <rect width="1200" height="400" fill="url(#grid)" opacity="0.3"/>
+  
+  <!-- Left side - Go API representation -->
+  <g transform="translate(100, 100)">
+    <!-- API Server box -->
+    <rect x="0" y="0" width="200" height="200" rx="10" fill="#161b22" stroke="url(#go-gradient)" stroke-width="2"/>
+    
+    <!-- Go logo simplified -->
+    <g transform="translate(70, 40)">
+      <path d="M0,20 L20,0 L40,0 L60,20 L40,40 L20,40 Z" fill="url(#go-gradient)" opacity="0.8"/>
+      <text x="30" y="28" text-anchor="middle" font-family="Arial Black" font-size="20" fill="#0d1117">Go</text>
+    </g>
+    
+    <!-- API endpoints -->
+    <g font-family="monospace" font-size="12" fill="#58a6ff">
+      <text x="20" y="120">GET /repos/{owner}/</text>
+      <text x="20" y="140">GET /health</text>
+    </g>
+    
+    <!-- Server indicator -->
+    <circle cx="170" cy="30" r="8" fill="#3fb950">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Label -->
+    <text x="100" y="230" text-anchor="middle" font-family="Arial" font-size="16" fill="#8b949e">API Server</text>
+  </g>
+  
+  <!-- Center - Project title -->
+  <g transform="translate(600, 100)">
+    <!-- Main title -->
+    <text x="0" y="0" text-anchor="middle" font-family="Arial Black" font-size="56" fill="#f0f6fc" filter="url(#glow)">
+      dotProject <tspan font-style="italic" fill="#8b949e">v2</tspan>
+    </text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="40" text-anchor="middle" font-family="Arial" font-size="18" fill="#8b949e">
+      Monorepo Tool for Project Information
+    </text>
+    
+    <!-- Connection lines -->
+    <g stroke="#30363d" stroke-width="2" fill="none">
+      <path d="M-200,80 Q-100,80 0,80 T200,80" stroke-dasharray="5,5">
+        <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite"/>
+      </path>
+    </g>
+    
+    <!-- GitHub integration badge -->
+    <g transform="translate(-60, 100)">
+      <rect x="0" y="0" width="120" height="30" rx="15" fill="#238636"/>
+      <text x="60" y="20" text-anchor="middle" font-family="Arial" font-size="14" fill="#ffffff">GitHub API</text>
+    </g>
+  </g>
+  
+  <!-- Right side - TypeScript CLI representation -->
+  <g transform="translate(900, 100)">
+    <!-- CLI box -->
+    <rect x="0" y="0" width="200" height="200" rx="10" fill="#161b22" stroke="url(#ts-gradient)" stroke-width="2"/>
+    
+    <!-- TypeScript logo simplified -->
+    <g transform="translate(70, 40)">
+      <rect x="0" y="0" width="60" height="60" rx="5" fill="url(#ts-gradient)" opacity="0.8"/>
+      <text x="30" y="40" text-anchor="middle" font-family="Arial Black" font-size="24" fill="#ffffff">TS</text>
+    </g>
+    
+    <!-- CLI command -->
+    <g font-family="monospace" font-size="12" fill="#58a6ff">
+      <text x="20" y="120">$ ./bin/run.js generate</text>
+      <text x="20" y="140">  [owner] [repo]</text>
+    </g>
+    
+    <!-- Output indicator -->
+    <g transform="translate(20, 160)">
+      <text font-family="monospace" font-size="11" fill="#3fb950">→ INFO.yml</text>
+    </g>
+    
+    <!-- Label -->
+    <text x="100" y="230" text-anchor="middle" font-family="Arial" font-size="16" fill="#8b949e">CLI Tool</text>
+  </g>
+  
+  <!-- Tech stack badges at bottom -->
+  <g transform="translate(300, 320)">
+    <!-- Go badge -->
+    <g>
+      <rect x="0" y="0" width="100" height="28" rx="3" fill="#00ADD8"/>
+      <text x="50" y="19" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#ffffff">Go</text>
+    </g>
+    
+    <!-- TypeScript badge -->
+    <g transform="translate(110, 0)">
+      <rect x="0" y="0" width="100" height="28" rx="3" fill="#3178C6"/>
+      <text x="50" y="19" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#ffffff">TypeScript</text>
+    </g>
+    
+    <!-- Node.js badge -->
+    <g transform="translate(220, 0)">
+      <rect x="0" y="0" width="100" height="28" rx="3" fill="#339933"/>
+      <text x="50" y="19" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#ffffff">Node.js</text>
+    </g>
+    
+    <!-- GitHub badge -->
+    <g transform="translate(330, 0)">
+      <rect x="0" y="0" width="100" height="28" rx="3" fill="#181717"/>
+      <text x="50" y="19" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#ffffff">GitHub API</text>
+    </g>
+  </g>
+  
+  <!-- Decorative elements -->
+  <g opacity="0.3">
+    <!-- Binary/code decoration -->
+    <text x="50" y="380" font-family="monospace" font-size="10" fill="#30363d">
+      {API} ←→ [CLI] | Go + TypeScript | Monorepo Architecture
+    </text>
+  </g>
+  
+  <!-- Cache indicator -->
+  <g transform="translate(300, 200)" opacity="0.7">
+    <rect x="-30" y="-15" width="60" height="30" rx="15" fill="none" stroke="#ffa657" stroke-width="2"/>
+    <text x="0" y="5" text-anchor="middle" font-family="Arial" font-size="12" fill="#ffa657">Cache</text>
+  </g>
+  
+  <!-- Animated data flow dots -->
+  <g>
+    <circle r="4" fill="#58a6ff">
+      <animateMotion dur="3s" repeatCount="indefinite">
+        <mpath href="#dataflow"/>
+      </animateMotion>
+    </circle>
+    <circle r="4" fill="#58a6ff">
+      <animateMotion dur="3s" begin="1s" repeatCount="indefinite">
+        <mpath href="#dataflow"/>
+      </animateMotion>
+    </circle>
+    <circle r="4" fill="#58a6ff">
+      <animateMotion dur="3s" begin="2s" repeatCount="indefinite">
+        <mpath href="#dataflow"/>
+      </animateMotion>
+    </circle>
+  </g>
+  
+  <!-- Hidden path for animation -->
+  <path id="dataflow" d="M 300,200 Q 600,200 900,200" fill="none"/>
+</svg>
