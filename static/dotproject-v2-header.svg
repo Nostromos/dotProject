@@ -66,18 +66,8 @@
     <text x="100" y="230" text-anchor="middle" font-family="Arial" font-size="16" fill="#8b949e">API Server</text>
   </g>
   
-  <!-- Center - Project title -->
+  <!-- Center - Connection visualization -->
   <g transform="translate(600, 100)">
-    <!-- Main title -->
-    <text x="0" y="0" text-anchor="middle" font-family="Arial Black" font-size="56" fill="#f0f6fc" filter="url(#glow)">
-      dotProject
-    </text>
-    
-    <!-- Subtitle -->
-    <text x="0" y="40" text-anchor="middle" font-family="Arial" font-size="18" fill="#8b949e">
-      Monorepo Tool for Project Information
-    </text>
-    
     <!-- Connection lines -->
     <g stroke="#30363d" stroke-width="2" fill="none">
       <path d="M-200,80 Q-100,80 0,80 T200,80" stroke-dasharray="5,5">
