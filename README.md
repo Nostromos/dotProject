@@ -46,8 +46,8 @@ A monorepo tool for programmatically generating project information. It combines
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/nostromos/dotprojectv2.git
-cd dotprojectv2
+git clone https://github.com/nostromos/dotproject.git
+cd dotproject
 ```
 
 2. Install CLI dependencies:
@@ -97,7 +97,7 @@ cd cli
 ## Project Structure
 
 ```
-dotprojectv2/
+dotproject/
 ├── api/                     # Go API server
 │   ├── cmd/
 │   │   └── server/

@@ -6,7 +6,7 @@
   "bin": {
     "dotproject": "./bin/run.js"
   },
-  "bugs": "https://github.com/Nostromos/dotprojectv2/issues",
+  "bugs": "https://github.com/Nostromos/dotproject/issues",
   "dependencies": {
     "@oclif/core": "^4",
     "@oclif/plugin-help": "^6",
@@ -37,7 +37,7 @@
     "./dist",
     "./oclif.manifest.json"
   ],
-  "homepage": "https://github.com/Nostromos/dotprojectv2",
+  "homepage": "https://github.com/Nostromos/dotproject",
   "keywords": [
     "oclif"
   ],
@@ -59,7 +59,7 @@
       }
     }
   },
-  "repository": "Nostromos/dotprojectv2",
+  "repository": "Nostromos/dotproject",
   "scripts": {
     "build": "shx rm -rf dist && tsc -b",
     "lint": "eslint",

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-dotProject v2 is a monorepo tool for programmatically generating project information. It consists of:
+dotProject is a monorepo tool for programmatically generating project information. It consists of:
 - **Go API Server** (`/api`) - REST API that interfaces with GitHub API to fetch repository data
 - **TypeScript CLI** (`/cli`) - Command-line tool for generating INFO.yml files from repository data
 
