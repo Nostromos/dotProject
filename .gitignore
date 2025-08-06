@@ -1,80 +1,64 @@
-# Node modules
+# Node modules (if using frontend tools)
 node_modules/
 
-# Logs
-logs/
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Composer dependencies
+/vendor/
+/composer.lock
 
-# Environment variables
+# Environment files
 .env
+.env.local
+.env.*.local
 
-# TypeScript
-*.tsbuildinfo
+# Logs and runtime files
+*.log
+logs/
+tmp/
+sessions/
 
-# Build outputs
+# Build directories
 dist/
 build/
+release/
 
-# Dependency directories
-jspm_packages/
+# Coverage reports
+coverage/
+lcov-report/
 
-# IDEs and editors
-.vscode/
+# IDE and editor settings
 .idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
+.vscode/
+*.sublime-project
+*.sublime-workspace
 
-# Optional npm cache directory
-.npm
+# OS generated files
+.DS_Store
+Thumbs.db
 
-# Optional eslint cache
-.eslintcache
+# MacOS Finder info
+.AppleDouble
+.LSOverride
 
-# Optional REPL history
-.node_repl_history
+# Thumbnails
+._*
 
-# Output of 'npm pack'
-*.tgz
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
 
-# Yarn Integrity file
-.yarn-integrity
 
-# dotenv environment variables file
-.env.test
-.env.production
+# Temporary files
+*.swp
+*~
+.session
 
-# Parcel-bundler cache (https://parceljs.org/)
-.cache
+# DotProject custom temp or upload dirs
+uploads/
+tmpfiles/
 
-# Next.js build output
-.next
-
-# Nuxt.js build output
-.nuxt
-
-# Gatsby files
-.cache/
-public/
-
-# Vuepress build output
-.vuepress/dist
-
-# Serverless directories
-.serverless/
-
-# FuseBox cache
-.fusebox/
-
-# DynamoDB Local files
-.dynamodb/
-
-# TernJS port file
-.tern-port
-
-# Example files as part of dev
-examples/
+# API Server Setup
+setup.go

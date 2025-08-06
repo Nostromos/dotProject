@@ -1,27 +1,12 @@
 {
-  "type": "module",
+  "name": "dotprojectv2",
+  "version": "0.1.5",
+  "description": "Programatic project pages",
+  "license": "MIT",
+  "author": "Michael Monaghan <michael@monaghan.nyc>",
+  "type": "commonjs",
+  "main": "index.js",
   "scripts": {
-    "start": "node --loader ts-node/esm ./src/index.js",
-    "startt": "node --loader ts-node/esm ./index.ts",
-    "startpaths": "node --loader ts-node/esm --require tsconfig-paths/register ./src/index.ts"
-  },
-  "devDependencies": {
-    "@octokit/types": "^13.8.0",
-    "@types/node": "^22.13.8",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.2"
-  },
-  "dependencies": {
-    "@octokit/auth-token": "^5.1.2",
-    "@octokit/core": "^6.1.4",
-    "@octokit/openapi-types": "^24.0.0",
-    "@octokit/plugin-rest-endpoint-methods": "^13.3.1",
-    "@octokit/plugin-throttling": "^9.6.0",
-    "dotenv": "^16.4.7",
-    "octokit": "^4.1.2",
-    "tsconfig-paths": "^4.2.0"
-  },
-  "bin": {
-    "dotp": "./dist/cliHandler.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
