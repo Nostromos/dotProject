@@ -159,6 +159,9 @@ npm run lint
 
 ## CI/CD
 
+> [!CAUTION]
+> All the tests are broken right now and CI/CD doesn't work. That's *intended* behavior for now because the tests are slop and the gh actions workflow was written as a 1-shot without llm help, just vibes and intellisense. I thought I'd get back to it the next day and got distracted. If you're reading this, file an issue and I'll fix it eventually. <3
+
 The project uses GitHub Actions for continuous integration:
 - Tests run on push (except main branch)
 - Multi-OS testing (Ubuntu, Windows)
