@@ -98,7 +98,7 @@ cd cli
 
 ```
 dotprojectv2/
-├── api/                      # Go API server
+├── api/                     # Go API server
 │   ├── cmd/
 │   │   └── server/
 │   │       └── main.go      # API entry point
@@ -109,12 +109,12 @@ dotprojectv2/
 │   │   └── setup/           # Environment setup
 │   ├── go.mod
 │   └── go.sum
-├── cli/                      # TypeScript CLI
+├── cli/                     # TypeScript CLI
 │   ├── src/
 │   │   └── commands/
 │   │       └── generate/    # Generate command
 │   ├── bin/
-│   │   └── run.js          # CLI entry point
+│   │   └── run.js           # CLI entry point
 │   ├── package.json
 │   └── tsconfig.json
 ├── go.work                  # Go workspace configuration
