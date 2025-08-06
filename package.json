@@ -1,7 +1,7 @@
 {
-  "name": "dotprojectv2",
+  "name": "dotproject",
   "version": "0.1.5",
-  "description": "Programatic project pages",
+  "description": "Programmatic project pages",
   "license": "MIT",
   "author": "Michael Monaghan <michael@monaghan.nyc>",
   "type": "commonjs",
